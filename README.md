@@ -1,5 +1,5 @@
 # imdb-movie-search
-Simple React app for searching movie titles on IMDB
+Simple React app for searching movie titles on IMDB and keeping track of search history.
 
 ## Quick Start
 * Clone repo to your local
