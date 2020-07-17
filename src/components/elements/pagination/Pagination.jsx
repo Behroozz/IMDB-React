@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { connect } from 'react-redux'
-import getItems from '../../../api/getItems'
+import { getItems } from '../../../actions/itemActions'
+import { ThemeContext } from '../../../config/theme'
+
 
 export const Pagination = ({ page, total_pages, term, dispatch }) => {
   const nextPage = () => {
@@ -17,17 +19,19 @@ export const Pagination = ({ page, total_pages, term, dispatch }) => {
     }
   }
 
+  const theme = useContext(ThemeContext)
+
   return(
   <React.Fragment>
     {total_pages > 0 && <div className="flex flex-wrap w-full bg-grey-100 pl-8">
       <span>
         <button 
-          className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+          className={`inline-block rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 ${theme.background}`}
           onClick={() => prevPage()}>Previous Page</button>
       </span>
       <span className="pl-2">
         <button
-          className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+          className={`inline-block rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 ${theme.background}`}
           onClick={() =>  nextPage()}>Next Page</button>
       </span>
     </div>}

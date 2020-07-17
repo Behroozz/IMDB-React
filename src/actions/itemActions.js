@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { get } from 'lodash' 
-import { DATA_FETCH } from '../config/constants'
+import { DATA_FETCH, DATA_PROCESS } from '../config/constants'
 
-function getItems(term, page=1) {
+export function getItems(term, page=1) {
   return async (dispatch) => {
     try {
       dispatch({
@@ -28,4 +28,13 @@ function getItems(term, page=1) {
   }
 }
 
-export default getItems
+export function deleteItem(id) {
+  return (dispatch) => {
+    dispatch({
+      type: DATA_PROCESS.DELETE,
+      payload: {
+        id
+      }
+    }) 
+  }
+}

@@ -1,6 +1,6 @@
 import { get } from 'lodash'
 
-import { DATA_FETCH } from '../../config/constants.js'
+import { DATA_FETCH, DATA_PROCESS } from '../../config/constants.js'
 
 export const initialState = {
   isLoading: false,
@@ -35,7 +35,13 @@ export default function ListingReducer(state= initialState, action) {
         isLoading: true,
         term: get(action, 'payload.term')
       }
-
+    }
+    case DATA_PROCESS.DELETE: {
+      console.log('action', action)
+      return {
+        ...state,
+        data: state.data.filter(info => info.imdbID !== action.payload.id)
+      }
     }
     default:
       return state
